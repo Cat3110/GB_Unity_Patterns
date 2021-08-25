@@ -1,4 +1,6 @@
-
+using System;
+using System.Collections.Generic;
+using Asteroids.Interfaces;
 using UnityEngine;
 
 
@@ -6,17 +8,24 @@ namespace Asteroids
 {
     public class GameController : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        #region PrivateData
+
+        private List<iUpdatable> _updatables = new List<iUpdatable>();
+
+        #endregion
+
+
+        #region UnityMethods
+
+        private void Update()
         {
-        
+            foreach (var t in _updatables)
+            {
+                t.UpdateTick();
+            }
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        #endregion
     }
 }
 
